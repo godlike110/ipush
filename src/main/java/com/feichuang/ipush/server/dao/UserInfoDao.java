@@ -12,4 +12,7 @@ public interface UserInfoDao extends Mapper<UserInfo> {
     @Select("select * from user_info where id=#{userId} limit 1 ")
     public UserInfo getByUserId(@Param("userId") int userId);
 
+    @Select("select * from user_info where phone=#{phone} limit 1 ")
+    public UserInfo getByPhone(@Param("phone") String phone);
+
 }

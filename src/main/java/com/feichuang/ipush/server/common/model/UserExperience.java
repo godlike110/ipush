@@ -4,10 +4,10 @@ import java.util.Date;
 
 /**
  * 用户工作经历
- * 
+ *
  * @author junze
  */
-public class UserExperience {
+public class UserExperience extends BaseObject {
 
     private int id;
 

@@ -5,7 +5,7 @@ package com.feichuang.ipush.server.common.model;
  *
  * @author junze
  */
-public class CompanyPosition {
+public class CompanyPosition extends BaseObject {
 
     private int id;
 

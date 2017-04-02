@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * 聊天记录
  */
-public class ChatInfo {
+public class ChatInfo extends BaseObject {
 
     private int id;
 

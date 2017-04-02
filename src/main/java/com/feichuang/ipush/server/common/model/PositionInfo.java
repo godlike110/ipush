@@ -2,10 +2,10 @@ package com.feichuang.ipush.server.common.model;
 
 /**
  * 职位类型
- * 
+ *
  * @author junze
  */
-public class PositionInfo {
+public class PositionInfo extends BaseObject {
 
     private int id;
 

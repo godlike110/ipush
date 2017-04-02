@@ -42,29 +42,32 @@ public class UserAuthService {
      * @param email
      * @param authImgPath
      */
-    public Map<Boolean, String> userSubmitToAuth(int userId, String realName,
+    public Map<String, Object> userSubmitToAuth(int userId, String realName,
             int companyId, String companyName, String email, String authImgPath) {
-        Map<Boolean, String> result = new HashMap<>();
+        Map<String, Object> result = new HashMap<>();
 
         Date now = new Date();
         Date createYeasterDayTime = DateUtils.addDays(now, -1);
         int exists = this.userAuthDao.getTimesByCreateTime(userId,
             createYeasterDayTime);
         if (exists > 0) {
-            result.put(false, "提交频率太高");
+            result.put("result", false);
+            result.put("msg", "提交频率太高");
             return result;
         }
 
         UserAuth auth = this.userAuthDao.getLatestAuth(userId);
         if (auth != null && auth.getStatus() == UserAuth.STATUS_PROCESSING) {
-            result.put(false, "您有处理中的审核,请勿重复提交");
+            result.put("result", false);
+            result.put("msg", "您有处理中的审核,请勿重复提交");
             return result;
         }
 
         ItCompanyInfo company = this.itCompanyInfoDao
             .getCompanyByName(companyName);
         if (company == null) {
-            result.put(false, "公司不存在，请确认后再提交");
+            result.put("result", false);
+            result.put("msg", "公司不存在，请确认后再提交");
             return result;
         }
 
@@ -78,7 +81,8 @@ public class UserAuthService {
         auth.setEmail(email);
         this.userAuthDao.insert(auth);
 
-        result.put(true, "");
+        result.put("result", true);
+        result.put("msg", "");
         return result;
     }
 

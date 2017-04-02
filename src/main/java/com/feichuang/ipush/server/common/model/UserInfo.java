@@ -7,7 +7,7 @@ import java.util.Date;
  *
  * @author junze
  */
-public class UserInfo {
+public class UserInfo extends BaseObject {
 
     private int id;
 

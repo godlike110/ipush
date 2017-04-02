@@ -2,10 +2,10 @@ package com.feichuang.ipush.server.common.model;
 
 /**
  * 公司点评
- * 
+ *
  * @author junze
  */
-public class CompanyComment {
+public class CompanyComment extends BaseObject {
 
     private int id;
     private int companyId;

@@ -7,7 +7,7 @@ import java.util.Date;
  *
  * @author junze
  */
-public class FaceQuestionComment {
+public class FaceQuestionComment extends BaseObject {
 
     private int id;
 

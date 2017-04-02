@@ -7,7 +7,7 @@ import java.util.Date;
  *
  * @author junze
  */
-public class ReceivedResumeInfo {
+public class ReceivedResumeInfo extends BaseObject {
 
     private int id;
 
