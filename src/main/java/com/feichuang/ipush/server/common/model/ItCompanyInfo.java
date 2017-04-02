@@ -29,6 +29,8 @@ public class ItCompanyInfo {
 
     private String logo;//公司Logo
 
+    private String suffixEmail; //公司邮箱后缀
+
     public int getId() {
         return this.id;
     }
@@ -115,6 +117,14 @@ public class ItCompanyInfo {
 
     public void setLogo(String logo) {
         this.logo = logo;
+    }
+
+    public String getSuffixEmail() {
+        return this.suffixEmail;
+    }
+
+    public void setSuffixEmail(String suffixEmail) {
+        this.suffixEmail = suffixEmail;
     }
 
 }

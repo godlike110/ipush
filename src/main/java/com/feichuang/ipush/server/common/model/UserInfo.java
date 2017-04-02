@@ -4,7 +4,7 @@ import java.util.Date;
 
 /**
  * 用户
- * 
+ *
  * @author junze
  */
 public class UserInfo {
@@ -28,7 +28,7 @@ public class UserInfo {
     private String email; // 邮箱
     private Date birthday;//出生日期
 
-    private int status;//1 创建中，2 已认证(已经认证的可以重新认证，因为换工作之类的)
+    private int status;//1 创建中，2 已认证(已经认证的可以重新认证，因为换工作之类的),3.认证失败
     private int active;//活跃度 (有内推职位，并且经常 登录系统,进行操作)
 
     private String loginTime;//最近登录时间
