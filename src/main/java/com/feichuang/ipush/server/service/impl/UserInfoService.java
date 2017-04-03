@@ -1,6 +1,7 @@
 package com.feichuang.ipush.server.service.impl;
 
 import java.util.Date;
+import java.util.Random;
 
 import org.apache.commons.lang.time.DateUtils;
 import org.apache.tomcat.util.security.MD5Encoder;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.feichuang.ipush.server.common.model.Result;
 import com.feichuang.ipush.server.common.model.UserInfo;
 import com.feichuang.ipush.server.common.model.VerifyCodeRecord;
+import com.feichuang.ipush.server.common.model.req.UserInfoReq;
 import com.feichuang.ipush.server.dao.UserInfoDao;
 import com.feichuang.ipush.server.dao.VerifyCodeRecordDao;
 
@@ -73,6 +75,10 @@ public class UserInfoService {
         }
         userInfo = new UserInfo();
         userInfo.setPhone(phone);
+        userInfo.setStatus(UserInfo.STATUS_CREATE);
+        //设置动态密码，明文
+        Random r = new Random();
+        userInfo.setActivePwd("100000" + r.nextInt(999999) + "");
         userInfo.setPwd(MD5Encoder.encode(verifyCode.getBytes()));
         this.userInfoDao.insert(userInfo);
         return true;
@@ -102,6 +108,14 @@ public class UserInfoService {
         this.verifyCodeRecordDao.updateStatus(record.getId(),
             VerifyCodeRecord.STATUS_PASSED);
         return true;
+    }
+
+    //完善用户信息
+    public void userExtraInfoAdded(UserInfoReq req) {
+        UserInfo userInfo = this.userInfoDao.getByPhone(req.getPhone());
+        if (userInfo == null) {
+            return;
+        }
     }
 
 }
