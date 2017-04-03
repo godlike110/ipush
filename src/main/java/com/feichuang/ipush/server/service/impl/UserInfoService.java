@@ -32,19 +32,19 @@ public class UserInfoService {
             return result;
         }
         VerifyCodeRecord record = this.verifyCodeRecordDao
-            .getCodeRecordByPhoneAndStatusAndType(phone,
-                VerifyCodeRecord.STATUS_CREATE, VerifyCodeRecord.TYPE_REG);
+                .getCodeRecordByPhoneAndStatusAndType(phone,
+                    VerifyCodeRecord.STATUS_CREATE, VerifyCodeRecord.TYPE_REG);
         Date now = new Date();
         //短信验证码没有过期
         if (record != null && !record.getExpireTime().before(now)) {
             result.setMessage("短信验证码没有过期");
             return result;
         }
-
         record = new VerifyCodeRecord();
         record.setCreateTime(new Date());
         record.setExpireTime(DateUtils.addMinutes(now, 30));
         record.setPhone(phone);
+        record.setVerifyCode(verifyCode);
         record.setStatus(VerifyCodeRecord.STATUS_CREATE);
         record.setType(VerifyCodeRecord.TYPE_REG);
         this.verifyCodeRecordDao.insert(record);
@@ -87,8 +87,8 @@ public class UserInfoService {
      */
     public boolean checkRegVerifyCode(String phone, String verifyCode) {
         VerifyCodeRecord record = this.verifyCodeRecordDao
-                .getCodeRecordByPhoneAndStatusAndType(phone,
-                    VerifyCodeRecord.STATUS_CREATE, VerifyCodeRecord.TYPE_REG);
+            .getCodeRecordByPhoneAndStatusAndType(phone,
+                VerifyCodeRecord.STATUS_CREATE, VerifyCodeRecord.TYPE_REG);
         if (record == null) {
             return false;
         }
@@ -99,6 +99,8 @@ public class UserInfoService {
         if (!record.getVerifyCode().equals(verifyCode)) {
             return false;
         }
+        this.verifyCodeRecordDao.updateStatus(record.getId(),
+            VerifyCodeRecord.STATUS_PASSED);
         return true;
     }
 
