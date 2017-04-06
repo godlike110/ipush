@@ -11,7 +11,7 @@ public class UserInfo extends BaseObject {
 
     private int id;
 
-    private String phone;
+    private String phone;//手机号
 
     private String pwd;//用户密码(md5)
 

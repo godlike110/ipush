@@ -1,0 +1,439 @@
+
+
+
+
+
+
+
+
+
+我是分隔符
+==============================================
+
+
+公司 
+
+it_company_info
+
+companyId 编号
+companyName  公司名称
+type 公司类别
+range 公司规模
+address 地址
+process 融资规模
+score 公司热度
+home_page 公司 主页
+logo  公司Logo
+desc 公司简介
+
+
+CREATE TABLE `it_company_info` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `companyIndex` int NOT NULL COMMENT '公司编号',
+  `companyName` varchar(50) NOT NULL COMMENT '公司名称',
+  `type` varchar(20) NOT NULL COMMENT '公司类型',
+  `process` varchar(20) NOT NULL COMMENT '融资进度',
+  `number` varchar(20) NOT NULL COMMENT '人数',
+  `address` varchar(20) NOT NULL  COMMENT '公司地址',
+  `intro` varchar(2000) DEFAULT NULL COMMENT '公司简介',
+  `score` int COMMENT '公司热度',
+  `homePage` varchar(50) COMMENT '公司主页',
+  `logo` varchar(100) COMMENT '公司Logo',
+  `suffix_email` varchar(30) COMMENT '邮箱后缀',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_index` (`companyIndex`)
+) ENGINE=InnoDB AUTO_INCREMENT=131483 DEFAULT CHARSET=utf8
+
+
+
+公司点评:
+company_comment
+
+companyId
+companyName
+tag 点评标签[工资，待遇，加班,前景]
+content点评内容
+id 点评Id
+
+
+CREATE TABLE `company_comment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `companyId` int NOT NULL COMMENT '公司编号',
+  `companyName` varchar(50) NOT NULL COMMENT '公司名称',
+  `tag` varchar(20) NOT NULL COMMENT '点评标签[工资，待遇，加班,前景]',
+  `content` varchar(200) NOT NULL COMMENT '点评内容',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=131483 DEFAULT CHARSET=utf8
+
+
+
+内推职位
+company_positon
+
+companyId 公司Id
+companyName 公司名称
+positonId 职位Id
+innerPushers  内推人数
+title 职位标题
+address 职位 工作地址
+salary 待遇
+exprience 经验
+eduLevel 学历
+status:
+
+content 描述[职位描述]
+requirment 要求
+
+
+
+CREATE TABLE `company_positon` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `companyId` int NOT NULL COMMENT '公司编号',
+  `companyName` varchar(50) NOT NULL COMMENT '公司名称',
+  `innerPushers` int NOT NULL COMMENT '内推人数',
+  `title` varchar(50) NOT NULL COMMENT '职位标题',
+  `address` varchar(100) NOT NULL  COMMENT '公司地址[具体的]',
+  `region` varchar(20) NOT NULL  COMMENT '城市名称:北京',
+  `salary` varchar(30) DEFAULT NULL COMMENT '待遇:10K-20K,固定选择',
+  `exprience` varchar(50) COMMENT '工作经验:3年',
+  `eduLevel` varchar(50) COMMENT '学历要求',
+  `content` varchar(500) COMMENT '职位描述',
+  `requirement` varchar(300) COMMENT '要求',
+  `status` int COMMENT '状态,1 审核中,2 审核通过 3 审核不通过'
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
+
+
+
+
+用户
+user_info 
+
+userId 用户Id
+pwd 用户密码(md5)
+activePwd(动态密码)
+sex 用户性别
+postion 职位
+expirerence 工作年限
+eduLevel 学历
+realName 真实名称 
+nickName 别名
+email 邮箱
+age  年龄
+status 1 创建中，2 已认证(已经认证的可以重新认证，因为换工作之类的)
+active 活跃度 (有内推职位，并且经常 登录系统,进行操作)
+phone 手机号
+loginTime 登录时间
+
+
+
+
+CREATE TABLE `user_info` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pwd` varchar(50) NOT NULL COMMENT '用户密码(md5)',
+  `activePwd` varchar(100) NOT NULL COMMENT '(动态密码明文)',
+  `sex` int NOT NULL COMMENT '用户性别 1 女 2男',
+  `position` varchar(100)  COMMENT '职位',
+  `region` varchar(20)   COMMENT '城市名称:北京',
+  `salary` varchar(30) DEFAULT NULL COMMENT '待遇:10K-20K,固定选择',
+  `experience` varchar(50) COMMENT '工作年限',
+  `eduLevel` varchar(50) COMMENT '学历',
+  `realName` varchar(20) COMMENT '真实名称',
+  `nickName` varchar(30) COMMENT '别名',
+  `email` varchar(30) COMMENT '邮箱',
+  `birthday` datetime COMMENT '出生日期', 
+  `status` int COMMENT '1 创建中，2 已认证(已经认证的可以重新认证，因为换工作之类的)',
+  `active` int COMMENT '活跃度 (有内推职位，并且经常 登录系统,进行操作)',
+  `phone` varchar(30) COMMENT '手机号',
+  `loginTime` datetime COMMENT '最近登录时间'
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
+
+
+
+
+
+
+
+
+职位类型表
+position_info
+
+positionId
+positionName [Java高级工程师，测试工程师]
+
+
+CREATE TABLE `position_info` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `positionName` varchar(50) NOT NULL COMMENT '[Java高级工程师，测试工程师]',
+  
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
+
+
+
+用户工作经历:
+user_experience:
+userId 用户Id
+userName 
+startTime,
+endTime,
+companyName:公司名称
+content:工作内容
+
+
+
+
+CREATE TABLE `user_experience` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int NOT NULL COMMENT '用户id',
+  `userName` varchar(100) NOT NULL COMMENT '名称',
+  `startTime` datetime COMMENT '开始时间',
+  `endTime` datetime COMMENT '结束时间',
+  `companyName` varchar(50) NOT NULL COMMENT '公司名称',
+  `content` varchar(50) NOT NULL COMMENT '工作内容',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
+
+
+
+
+
+用户教育经历:
+userId 用户Id
+startTime,
+endTime,
+schoolName:学习名称
+level:本科或大专
+major:专业
+
+
+
+CREATE TABLE `user_edu_experience` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int NOT NULL COMMENT '用户id',
+  `userName` varchar(30) NOT NULL COMMENT '名称',
+  `startTime` datetime COMMENT '开始时间',
+  `endTime` datetime COMMENT '结束时间',
+  `schoolName` varchar(50) NOT NULL COMMENT '学校',
+  `level` varchar(50) NOT NULL COMMENT '本科或大专',
+  `major` varchar(50) NOT NULL COMMENT '专业',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
+
+
+
+
+用户审核记录 
+
+userId
+userName
+authPhoto 审核图片
+email 邮箱
+status  1审核中，2，审核失败，3审核成功
+
+
+
+
+CREATE TABLE `user_auth` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int NOT NULL COMMENT '用户id',
+  `userName` varchar(30) NOT NULL COMMENT '名称',
+  `authPhoto` datetime COMMENT '图片地址',
+  `email` varchar(30) COMMENT '公司邮箱',
+  `status` int NOT NULL COMMENT '1 审核中 2审核成功 3审核失败',
+  `createTime` datetime ,
+  `authTime` datetime,
+  `remark` varchar(30) COMMENT '审核意见',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
+
+
+
+//发送短信表
+CREATE TABLE `verify_code_record` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int NOT NULL COMMENT '用户id',
+  `phone` varchar(30) NOT NULL COMMENT '手机号',
+  `expireTime` datetime ,
+  `verifyCode` varchar(30),
+  `type` varchar(30) ,
+  `status` int NOT NULL ,
+  `createTime` datetime ,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
+
+
+
+
+990000965306
+
+聊天记录表
+chat_info
+chatId  记录Id
+senderId  发送人
+senderName 发送人名称
+receiverId
+receiverName  接收人名称
+createTime 创建时间
+isRead 是否已读
+type 类型
+
+
+CREATE TABLE `chat_info` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `senderId` int NOT NULL COMMENT '用户id',
+  `senderName` varchar(30) NOT NULL COMMENT '名称',
+  `receiverId` int NOT NULL COMMENT '用户id',
+  `receiverName` varchar(30) NOT NULL COMMENT '名称',
+  `createTime` datetime COMMENT '图片地址',
+  `content` varchar(30) COMMENT '公司邮箱',
+  `isRead` int NOT NULL COMMENT '1 未读 2 已读',
+  `type` int NOT NULL COMMENT '类型',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
+
+
+面试题:
+
+face_question
+
+id
+userId
+userName
+tag 标签
+content  内容
+discussCount 评论数
+
+CREATE TABLE `face_question` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int NOT NULL COMMENT '用户id',
+  `userName` varchar(30) NOT NULL COMMENT '名称',
+  `tag` varchar(20) NOT NULL COMMENT '标签',
+  `content` varchar(300) NOT NULL COMMENT '内容',
+  `discussCount` int COMMENT '评论数',
+  `createTime` datetime COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
+
+
+面试题评论:
+face_question_comment
+id
+userId
+questionId 面试题帖子id
+content 内容
+replayId 回复Id
+
+
+CREATE TABLE `face_question_comment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `questionId` int NOT NULL COMMENT '面试题帖子id',
+  `replayId` int NOT NULL COMMENT '回复Id',
+  `content` varchar(300) NOT NULL COMMENT '内容',
+  `userId` int NOT NULL COMMENT '用户id',
+  `userName` varchar(30) NOT NULL COMMENT '名称',
+  `createTime` datetime COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
+
+
+简历表
+resume_info
+id
+userId
+userName
+title 标题
+filePath 文件名
+
+
+CREATE TABLE `resume_info` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(20) NOT NULL COMMENT '标题',
+  `filePath` varchar(50) NOT NULL COMMENT '文件路径',
+  `title` varchar(20) NOT NULL COMMENT '标题',
+  `userId` int NOT NULL COMMENT '用户id',
+  `userName` varchar(30) NOT NULL COMMENT '名称',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
+
+
+
+接收简历表
+received_resume_info
+id
+userId
+userName
+resumeId
+title 
+senderId 
+senderName
+
+filePath 文件名
+
+
+CREATE TABLE `received_resume_info` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(20) NOT NULL COMMENT '标题',
+  `resumeId` varchar(50) NOT NULL COMMENT '文件路径',
+  `title` varchar(20) NOT NULL COMMENT '标题',
+  `userId` int NOT NULL COMMENT '用户id',
+  `userName` varchar(30) NOT NULL COMMENT '名称',
+  `senderId` int NOT NULL COMMENT '用户id',
+  `senderName` varchar(30) NOT NULL COMMENT '名称',
+  `filePath` varchar(50) NOT NULL COMMENT '文件路径',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+  
