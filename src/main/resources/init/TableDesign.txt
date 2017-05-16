@@ -42,7 +42,7 @@ CREATE TABLE `it_company_info` (
   `suffix_email` varchar(30) COMMENT '邮箱后缀',
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_index` (`companyIndex`)
-) ENGINE=InnoDB AUTO_INCREMENT=131483 DEFAULT CHARSET=utf8
+) ENGINE=InnoDB AUTO_INCREMENT=131483 DEFAULT CHARSET=utf8;
 
 
 
@@ -99,7 +99,7 @@ CREATE TABLE `company_positon` (
   `eduLevel` varchar(50) COMMENT '学历要求',
   `content` varchar(500) COMMENT '职位描述',
   `requirement` varchar(300) COMMENT '要求',
-  `status` int COMMENT '状态,1 审核中,2 审核通过 3 审核不通过'
+  `status` int COMMENT '状态,1 审核中,2 审核通过 3 审核不通过',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
 
@@ -145,7 +145,7 @@ CREATE TABLE `user_info` (
   `status` int COMMENT '1 创建中，2 已认证(已经认证的可以重新认证，因为换工作之类的)',
   `active` int COMMENT '活跃度 (有内推职位，并且经常 登录系统,进行操作)',
   `phone` varchar(30) COMMENT '手机号',
-  `loginTime` datetime COMMENT '最近登录时间'
+  `loginTime` datetime COMMENT '最近登录时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
 
@@ -349,7 +349,6 @@ filePath 文件名
 
 CREATE TABLE `resume_info` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(20) NOT NULL COMMENT '标题',
   `filePath` varchar(50) NOT NULL COMMENT '文件路径',
   `title` varchar(20) NOT NULL COMMENT '标题',
   `userId` int NOT NULL COMMENT '用户id',
@@ -376,7 +375,6 @@ CREATE TABLE `received_resume_info` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(20) NOT NULL COMMENT '标题',
   `resumeId` varchar(50) NOT NULL COMMENT '文件路径',
-  `title` varchar(20) NOT NULL COMMENT '标题',
   `userId` int NOT NULL COMMENT '用户id',
   `userName` varchar(30) NOT NULL COMMENT '名称',
   `senderId` int NOT NULL COMMENT '用户id',
