@@ -27,6 +27,9 @@ public class UserInfo extends BaseObject {
     private String nickName; // 别名
     private String email; // 邮箱
     private Date birthday;//出生日期
+    private String companyName;
+
+    private String wxOpenId;//微信授权openId;
 
     private int status;//1 创建中，2 认证中(已经认证的可以重新认证，因为换工作之类的),3.认证成功 4.认证失败
 
@@ -38,6 +41,14 @@ public class UserInfo extends BaseObject {
     private int active;//活跃度 (有内推职位，并且经常 登录系统,进行操作)
 
     private String loginTime;//最近登录时间
+
+    public String getCompanyName() {
+        return this.companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
 
     public int getId() {
         return this.id;
@@ -173,6 +184,14 @@ public class UserInfo extends BaseObject {
 
     public void setLoginTime(String loginTime) {
         this.loginTime = loginTime;
+    }
+
+    public String getWxOpenId() {
+        return this.wxOpenId;
+    }
+
+    public void setWxOpenId(String wxOpenId) {
+        this.wxOpenId = wxOpenId;
     }
 
 }

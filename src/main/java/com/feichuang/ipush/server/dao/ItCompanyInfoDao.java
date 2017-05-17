@@ -12,7 +12,7 @@ import com.feichuang.ipush.server.common.model.ItCompanyInfo;
  */
 public interface ItCompanyInfoDao extends Mapper<ItCompanyInfo> {
 
-    @Select("select * from user where companyName=#{companyName} limit 1 ")
+    @Select("select * from it_company_info where companyName=#{companyName} limit 1 ")
     public ItCompanyInfo getCompanyByName(
             @Param("companyName") String companyName);
 

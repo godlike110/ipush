@@ -7,21 +7,30 @@ package com.feichuang.ipush.server.common.model;
  */
 public class CompanyPosition extends BaseObject {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+
     private int id;
 
     private int companyId;
+
+    private int publisher;//发布人
 
     private String companyName;
 
     private int innerPushers;//内推人数
 
-    private String title;
+    private String title;//招聘职位
 
     private String address; //公司地址[具体的]
 
     private String region;// 城市名称:北京
 
     private String salary;// 城市名称:待遇:10K-20K,固定选择
+
+    private String treatMent;//福利待遇
 
     private String exprience;// 工作经验:3年
 
@@ -32,6 +41,22 @@ public class CompanyPosition extends BaseObject {
     private String requirement;// 要求
 
     private int status;// 状态,1 审核中,2 审核通过 3 审核不通过
+
+    public int getPublisher() {
+        return this.publisher;
+    }
+
+    public void setPublisher(int publisher) {
+        this.publisher = publisher;
+    }
+
+    public String getTreatMent() {
+        return this.treatMent;
+    }
+
+    public void setTreatMent(String treatMent) {
+        this.treatMent = treatMent;
+    }
 
     public int getId() {
         return this.id;
