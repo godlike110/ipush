@@ -7,7 +7,7 @@ import java.util.Date;
  *
  * @author junze
  */
-public class ProjectExpirence extends BaseObject {
+public class ProjectExperience extends BaseObject {
 
     /**
      *
