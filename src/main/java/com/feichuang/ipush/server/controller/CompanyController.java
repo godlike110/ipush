@@ -6,10 +6,10 @@ import io.swagger.annotations.ApiOperation;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSON;
 import com.feichuang.ipush.server.common.model.CompanyPosition;
@@ -22,7 +22,7 @@ import com.feichuang.ipush.server.dao.ItCompanyInfoDao;
  *
  * @author junze
  */
-@Controller
+@RestController
 @RequestMapping("company")
 @Api(value = "公司职位操作", description = "对外服务", tags = "公司职位操作")
 public class CompanyController {
@@ -36,6 +36,7 @@ public class CompanyController {
     @RequestMapping(value = "test",
             produces = "application/json; charset=utf-8")
     @ResponseBody
+    @ApiOperation(value = "test", httpMethod = "POST", notes = "test")
     public String index(HttpServletRequest request) {
         String companyName = request.getParameter("companyName");
         return JSON.toJSONString(this.itCompanyInfoDao
